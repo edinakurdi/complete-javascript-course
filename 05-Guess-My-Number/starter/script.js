@@ -7,12 +7,20 @@ document.querySelector('.number').textContent = secretNum;
 document.querySelector('.score').textContent = score;
 
 document.querySelector('.check').addEventListener('click', function () {
-  const guess = document.querySelector('.guess').value;
+  const guess = Number(document.querySelector('.guess').value);
 
+  //when no input
   if (!guess) {
     document.querySelector('.message').textContent = 'No number';
+
+    //when player wins
   } else if (guess === secretNum) {
     document.querySelector('.message').textContent = 'Correct. You won';
+
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+
+    //when guess is too high
   } else if (guess > secretNum) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too high';
@@ -22,6 +30,8 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.message').textContent = 'Game over. You lost';
       document.querySelector('.score').textContent = 0;
     }
+
+    //when guess is too low
   } else if (guess < secretNum) {
     if (score > 1) {
       document.querySelector('.message').textContent = 'Too low';
